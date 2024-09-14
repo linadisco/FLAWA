@@ -1,0 +1,9 @@
+1ere étape : Forum
+
+Le forum consistera à permettre aux utilisateurs de pouvoir communiquer sur différents sujets.
+
+Pour l'instant, tu dois seulement permettre à l'utilisateur de commencer un chat, les autres utilisateurs peuvent répondre à n'importe quel chat de chaque utilisateur.
+
+Attention : 
+
+Ne pas catégoriser les chats par sujets ou autre, on fera ça après.
