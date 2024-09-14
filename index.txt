@@ -1,0 +1,3 @@
+Créer une page qui scannera le code barre d'un produit et affichera les informations principales de ce produit en fonction de son ID.
+
+Quand on cliquera sur le produit cela nous redirigera vers la page des détails du produit (ProductPage) voir trello
