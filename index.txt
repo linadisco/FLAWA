@@ -1,0 +1,14 @@
+L'utilisateur devra remplir un questionnaire avec les champs suivants :
+
+nom produit
+
+marque produit
+
+code barre produit
+
+photo produit
+
+photo ingrédients du produit
+
+
+Une fois remli, il fera la demande d'ajout du produit, cela nous enverra un mail ou une demande sur une adresse mail perso (de l'appli) afin qu'on ajoute le produit à l'api ou non selon le produit (vérifier le produit).
