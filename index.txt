@@ -1,3 +1,6 @@
-Créer une page qui scannera le code barre d'un produit et affichera les informations principales de ce produit en fonction de son ID.
+Plusieurs solutions : 
 
-Quand on cliquera sur le produit cela nous redirigera vers la page des détails du produit (ProductPage) voir trello
+- réorganiser l'api afin d'avoir des produits convenables et en français.
+    remplir chaque champ comme dans le 1er exemple
+
+- trouver une autre api pour produits de beauté
