@@ -1,0 +1,9 @@
+1ere étape:
+
+Faire une page avec une barre de recherche qui permettra de rechercher n'importe quel produit de l'api. (api des produits de beauté)
+Afficher les produits en fonction de la recherche ( auto-complétion )
+Lors du clic afficher la page du produit cliqué avec ses infos ( ProductPage )
+
+2eme étape:
+
+Cette page sera disponible seulement quand l'utilisateur sera connecté
