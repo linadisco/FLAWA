@@ -1,6 +1,105 @@
 Plusieurs solutions : 
 
 - réorganiser l'api afin d'avoir des produits convenables et en français.
-    remplir chaque champ comme dans le 1er exemple
 
-- trouver une autre api pour produits de beauté
+Chanel
+Dior
+Estée Lauder
+Lancôme
+Clinique
+L'Oréal
+Guerlain
+Yves Saint Laurent
+Givenchy
+Shiseido
+Bobbi Brown
+NARS
+MAC Cosmetics
+Laura Mercier
+Tarte Cosmetics
+Benefit Cosmetics
+Fenty Beauty
+Too Faced
+Urban Decay
+Charlotte Tilbury
+Kiehl's
+La Mer
+Vichy
+La Roche-Posay
+Bioderma
+Avene
+Nuxe
+Olay
+Clarins
+Caudalie
+Dr. Dennis Gross
+IT Cosmetics
+The Ordinary
+Garnier
+Perricone MD
+Ole Henriksen
+Fresh
+Huda Beauty
+Kopari
+Morphe
+RMS Beauty
+Tatcha
+Algenist
+Dove
+Lush
+Sunsilk
+Rituals
+Nip + Fab
+Eve Lom
+Elemis
+Bumble and Bumble
+Jo Malone
+Hershey’s
+Aesop
+Lime Crime
+Zoeva
+Buxom
+Farsali
+Rihanna (Fenty Skin)
+Pat McGrath Labs
+Dr. Jart+
+Sulwhasoo
+Youth to the People
+Cosrx
+Becca
+Juvia’s Place
+Vaseline
+Eucerin
+Briogeo
+Boscia
+Jane Iredale
+Supergoop!
+Eminence Organic Skin Care
+The Inkey List
+Shu Uemura
+Peter Thomas Roth
+Jergens
+GlamGlow
+Marc Jacobs Beauty
+Vera Wang
+Tarte
+Himalaya
+SK-II
+CeraVe
+GlamGlow
+Juvia’s Place
+Burt's Bees
+The Face Shop
+Mizani
+Avene
+Vera Wang
+Kerastase
+Olaplex
+Acure
+La Prairie
+Paula’s Choice
+Mario Badescu
+Wella
+It Cosmetics
+Kahina Giving Beauty
+
