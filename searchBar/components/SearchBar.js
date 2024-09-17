@@ -2,56 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState(''); // État pour la requête de recherche
-  const [products, setProducts] = useState([]); // Tous les produits récupérés
-  const [filteredProducts, setFilteredProducts] = useState([]); // Produits filtrés
-  const [selectedProduct, setSelectedProduct] = useState(null); // Produit sélectionné
-  const [loading, setLoading] = useState(false); // Indicateur de chargement
-  const [error, setError] = useState(null); // Gestion des erreurs
+  const [query, setQuery] = useState(''); 
+  const [products, setProducts] = useState([]); 
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(null); 
 
-  // Récupération des produits depuis l'API
   useEffect(() => {
     setLoading(true);
     fetch('https://produits-beaute-api.s3.eu-west-3.amazonaws.com/api-product.json')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log('Data:', data);
-      setProducts(data.products); // Récupérer la liste de produits
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error('Fetch error:', error);
-      setError('Erreur lors du chargement des produits');
-      setLoading(false);
-    });  
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProducts(data.products); 
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError('Erreur lors du chargement des produits');
+        setLoading(false);
+      });  
   }, []);
 
-  // Filtrer les produits selon la requête de recherche
   useEffect(() => {
     if (query.length >= 1) {
       const results = products
         .filter((product) =>
-          product.product_name &&
-          product.product_name.toLowerCase().startsWith(query.toLowerCase()) // Affiner la recherche avec startsWith
+          (product.product_name && product.product_name.toLowerCase().includes(query.toLowerCase())) ||
+          (product.brands && product.brands.some(brand => brand.toLowerCase().includes(query.toLowerCase())))
         )
-        .sort((a, b) => a.product_name.localeCompare(b.product_name)); // Tri alphabétique par product_name
+        .sort((a, b) => a.product_name.localeCompare(b.product_name));
       setFilteredProducts(results);
     } else {
-      setFilteredProducts([]); // Pas de résultats affichés si moins de 1 caractère
+      setFilteredProducts([]);
     }
   }, [query, products]);
 
-  // Fonction pour afficher les détails du produit sélectionné
   const handleProductClick = (product) => {
-    setSelectedProduct(product); // Sélectionner un produit pour en afficher les détails
+    setSelectedProduct(product); 
   };
 
-  // Si un produit est sélectionné, afficher ses détails
   if (selectedProduct) {
     return (
       <View style={styles.productDetails}>
@@ -70,27 +64,25 @@ const SearchBar = () => {
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Rechercher un produit par nom..."
+        placeholder="Rechercher un produit par nom ou marque..."
         value={query}
         onChangeText={setQuery}
       />
       {loading && <ActivityIndicator size="large" color="#0000ff" />}
       {error && <Text style={styles.errorText}>{error}</Text>}
-
-      {/* Afficher les produits uniquement si la recherche a au moins 1 caractère */}
       {filteredProducts.length > 0 && (
         <FlatList
           data={filteredProducts}
-          keyExtractor={(item) => item.id} // Modifié pour correspondre à l'identifiant du produit
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.productItem} onPress={() => handleProductClick(item)}>
               <Text style={styles.productName}>{item.product_name}</Text>
               <Text style={styles.productCountry}>Labels : {item.labels.join(', ')}</Text>
             </TouchableOpacity>
           )}
+          contentContainerStyle={styles.flatListContent}
         />
       )}
-
       {filteredProducts.length === 0 && query.length >= 1 && !loading && !error && (
         <Text style={styles.noResultsText}>Aucun produit trouvé.</Text>
       )}
@@ -100,6 +92,7 @@ const SearchBar = () => {
 
 const styles = StyleSheet.create({
   searchContainer: {
+    flex: 1, 
     padding: 20,
   },
   searchInput: {
@@ -145,6 +138,9 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginBottom: 10,
+  },
+  flatListContent: {
+    flexGrow: 1,
   },
 });
 
