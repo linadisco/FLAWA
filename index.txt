@@ -2,6 +2,10 @@ Plusieurs solutions :
 
 - réorganiser l'api afin d'avoir des produits convenables et en français.
 
+Avene
+
+
+
 Chanel
 Dior
 Estée Lauder
@@ -27,7 +31,6 @@ La Mer
 Vichy
 La Roche-Posay
 Bioderma
-Avene
 Nuxe
 Olay
 Clarins
