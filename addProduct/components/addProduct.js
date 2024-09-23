@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, ScrollView, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import emailjs from 'emailjs-com'; 
 
 const ChatPage = () => {
   const [productName, setProductName] = useState('');
@@ -35,22 +34,34 @@ const ChatPage = () => {
       Alert.alert('Erreur', 'Veuillez remplir tous les champs et fournir les images.');
       return;
     }
-
-    const templateParams = {
-      productName,
-      productBrand,
-      barcode,
-      productImage,
-      ingredientsImage,
-    };
-
-    emailjs.send('service_emr9449', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
-      .then((response) => {
-        Alert.alert('Succès', 'Email envoyé avec succès!');
-      }, (err) => {
-        Alert.alert('Erreur', 'Échec de l\'envoi de l\'email. Veuillez réessayer.');
+  
+    fetch('http://localhost:8081/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        productName,
+        productBrand,
+        barcode,
+        productImage,
+        ingredientsImage,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          Alert.alert('Succès', 'Email envoyé avec succès.');
+        } else {
+          Alert.alert('Erreur', 'Échec de l\'envoi de l\'email.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        Alert.alert('Erreur', 'Erreur de communication avec le serveur.');
       });
   };
+  
 
   return (
     <ScrollView style={styles.container}>
@@ -111,32 +122,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
   },
   label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginVertical: 8,
+    fontSize: 18,
+    fontWeight: '600',
+    marginVertical: 10,
     color: '#863B0A',
   },
   input: {
     borderWidth: 1,
     borderColor: '#C5AE96',
     borderRadius: 8,
-    padding: 8,
+    padding: 10,
     marginBottom: 16,
-    color: '#863B0A',
-    backgroundColor: '#FFA477',
+    backgroundColor: '#FFF3E3',
+    color: '#000',
   },
   image: {
-    width: 100,
-    height: 100,
-    marginVertical: 16,
-    borderRadius: 8,
+    width: 120,
+    height: 120,
+    marginVertical: 12,
+    borderRadius: 10,
+    borderWidth: 1,
   },
   button: {
     backgroundColor: '#ECAD7C',
-    padding: 10,
+    padding: 12,
     borderRadius: 8,
     alignItems: 'center',
     marginVertical: 10,
@@ -144,6 +156,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFF',
     fontWeight: 'bold',
+    fontSize: 16,
   },
   submitButton: {
     backgroundColor: '#C96A25',
@@ -158,5 +171,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
 
 export default ChatPage;
